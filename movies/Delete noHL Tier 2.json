@@ -1,0 +1,40 @@
+{
+  "name": "Delete: noHL Tier 2",
+  "trackerPattern": "*",
+  "trackerDomains": [
+    "*"
+  ],
+  "conditions": {
+    "schemaVersion": "1",
+    "delete": {
+      "enabled": true,
+      "mode": "deleteWithFilesPreserveCrossSeeds",
+      "condition": {
+        "operator": "AND",
+        "conditions": [
+          {
+            "field": "TAGS",
+            "operator": "EQUAL",
+            "value": "tier2"
+          },
+          {
+            "field": "TAGS",
+            "operator": "EQUAL",
+            "value": "noHL"
+          },
+          {
+            "field": "SEEDING_TIME",
+            "operator": "GREATER_THAN_OR_EQUAL",
+            "value": "1814400"
+          },
+          {
+            "field": "LAST_ACTIVITY_AGE",
+            "operator": "GREATER_THAN_OR_EQUAL",
+            "value": "21600"
+          }
+        ]
+      }
+    }
+  },
+  "intervalSeconds": 14400
+}

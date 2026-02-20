@@ -1,0 +1,32 @@
+{
+  "name": "Tag: noHL",
+  "trackerPattern": "*",
+  "trackerDomains": [
+    "*"
+  ],
+  "conditions": {
+    "schemaVersion": "1",
+    "tag": {
+      "enabled": true,
+      "tags": [
+        "noHL"
+      ],
+      "mode": "full",
+      "condition": {
+        "operator": "AND",
+        "conditions": [
+          {
+            "field": "HARDLINK_SCOPE",
+            "operator": "NOT_EQUAL",
+            "value": "outside_qbittorrent"
+          },
+          {
+            "field": "COMPLETION_ON_AGE",
+            "operator": "GREATER_THAN_OR_EQUAL",
+            "value": "43200"
+          }
+        ]
+      }
+    }
+  }
+}

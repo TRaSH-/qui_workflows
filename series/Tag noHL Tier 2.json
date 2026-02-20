@@ -1,0 +1,37 @@
+{
+  "name": "Tag: noHL Tier 2",
+  "trackerPattern": "*",
+  "trackerDomains": [
+    "*"
+  ],
+  "conditions": {
+    "schemaVersion": "1",
+    "tag": {
+      "enabled": true,
+      "tags": [
+        "~Tier2-noHL-21"
+      ],
+      "mode": "full",
+      "condition": {
+        "operator": "AND",
+        "conditions": [
+          {
+            "field": "TAGS",
+            "operator": "EQUAL",
+            "value": "tier2"
+          },
+          {
+            "field": "TAGS",
+            "operator": "EQUAL",
+            "value": "noHL"
+          },
+          {
+            "field": "SEEDING_TIME",
+            "operator": "GREATER_THAN_OR_EQUAL",
+            "value": "300"
+          }
+        ]
+      }
+    }
+  }
+}

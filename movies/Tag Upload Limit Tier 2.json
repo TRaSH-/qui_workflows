@@ -1,0 +1,52 @@
+{
+  "name": "Tag + Upload Limit: Tier 2",
+  "trackerPattern": "*",
+  "trackerDomains": [
+    "*"
+  ],
+  "conditions": {
+    "schemaVersion": "1",
+    "speedLimits": {
+      "enabled": true,
+      "uploadKiB": 2048,
+      "condition": {
+        "operator": "AND",
+        "conditions": [
+          {
+            "field": "TAGS",
+            "operator": "EQUAL",
+            "value": "tier2"
+          },
+          {
+            "field": "RATIO",
+            "operator": "GREATER_THAN_OR_EQUAL",
+            "value": "2"
+          }
+        ]
+      }
+    },
+    "tag": {
+      "enabled": true,
+      "tags": [
+        "~2MB/s"
+      ],
+      "mode": "full",
+      "condition": {
+        "operator": "AND",
+        "conditions": [
+          {
+            "field": "TAGS",
+            "operator": "EQUAL",
+            "value": "tier2"
+          },
+          {
+            "field": "RATIO",
+            "operator": "GREATER_THAN_OR_EQUAL",
+            "value": "2"
+          }
+        ]
+      }
+    }
+  },
+  "intervalSeconds": 1800
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Tag: Tier 2",
+  "trackerPattern": "tracker_2",
+  "trackerDomains": [
+    "tracker.xyz"
+  ],
+  "conditions": {
+    "schemaVersion": "1",
+    "tag": {
+      "enabled": true,
+      "tags": [
+        "Tier2"
+      ],
+      "mode": "full"
+    }
+  }
+}
