@@ -18,7 +18,7 @@
           {
             "field": "TAGS",
             "operator": "EQUAL",
-            "value": "tier1"
+            "value": "Tier1"
           },
           {
             "field": "TAGS",

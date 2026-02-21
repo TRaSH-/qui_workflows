@@ -17,9 +17,9 @@ Based on the [BZ workflow](https://github.com/BZ00001/qui_workflows): shortened 
 | Tag noHL.json                     | Tag: torrents that are not hardlinked with `noHL`                          |
 | Tag Season Pack.json              | Tag: Season Packs with `Season Pack`                                       |
 | Tag Single Episodes.json          | Tag: Single Episodes with `Episodes`                                       |
-| Tag Tier 1.json                   | Tag: Tier 1 with `tier1`                                                   |
-| Tag Tier 2.json                   | Tag: Tier 2 with `tier2`                                                   |
-| Tag Tier 3.json                   | Tag: Tier 3 with `tier3`                                                   |
+| Tag Tier 1.json                   | Tag: Tier 1 with `Tier1`                                                   |
+| Tag Tier 2.json                   | Tag: Tier 2 with `Tier2`                                                   |
+| Tag Tier 3.json                   | Tag: Tier 3 with `Tier3`                                                   |
 | Tag Upload Limit Tier 2.json      | Tag: Tier 2 with `~2MB/s` and set upload speed to 2 MB/s if Ratio is > 2.0 |
 | Tag Upload Limit Tier 3.json      | Tag: Tier 3 with `~1MB/s` and set upload speed to 1 MB/s if Ratio is > 2.0 |
 
@@ -36,9 +36,9 @@ Based on the [BZ workflow](https://github.com/BZ00001/qui_workflows): shortened 
 | Tag noHL Tier 2.json              | Tag: noHL Tier 2 with `~Tier2-noHL-21`                                     |
 | Tag noHL Tier 3.json              | Tag: noHL Tier 3 with `~Tier3-noHL-21`                                     |
 | Tag noHL.json                     | Tag: torrents that are not hardlinked with `noHL`                          |
-| Tag Tier 1.json                   | Tag: Tier 1 with `tier1`                                                   |
-| Tag Tier 2.json                   | Tag: Tier 2 with `tier2`                                                   |
-| Tag Tier 3.json                   | Tag: Tier 3 with `tier3`                                                   |
+| Tag Tier 1.json                   | Tag: Tier 1 with `Tier1`                                                   |
+| Tag Tier 2.json                   | Tag: Tier 2 with `Tier2`                                                   |
+| Tag Tier 3.json                   | Tag: Tier 3 with `Tier3`                                                   |
 | Tag Upload Limit Tier 2.json      | Tag: Tier 2 with `~2MB/s` and set upload speed to 2 MB/s if Ratio is > 2.0 |
 | Tag Upload Limit Tier 3.json      | Tag: Tier 3 with `~1MB/s` and set upload speed to 1 MB/s if Ratio is > 2.0 |
 
