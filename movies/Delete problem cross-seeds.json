@@ -18,18 +18,23 @@
             "value": "cross-seed"
           },
           {
-            "field": "ADDED_ON_AGE",
-            "operator": "GREATER_THAN_OR_EQUAL",
-            "value": "3600"
-          },
-          {
             "field": "STATE",
             "operator": "NOT_EQUAL",
             "value": "tracker_down"
           },
           {
+            "field": "ADDED_ON_AGE",
+            "operator": "GREATER_THAN",
+            "value": "3600"
+          },
+          {
             "operator": "OR",
             "conditions": [
+              {
+                "field": "STATE",
+                "operator": "EQUAL",
+                "value": "missingFiles"
+              },
               {
                 "field": "STATE",
                 "operator": "EQUAL",
@@ -38,37 +43,12 @@
               {
                 "field": "STATE",
                 "operator": "EQUAL",
-                "value": "missingFiles"
+                "value": "stalled_downloading"
               },
               {
-                "operator": "OR",
-                "conditions": [
-                  {
-                    "field": "STATE",
-                    "operator": "EQUAL",
-                    "value": "tracker_down"
-                  },
-                  {
-                    "field": "STATE",
-                    "operator": "EQUAL",
-                    "value": "stopped"
-                  },
-                  {
-                    "operator": "AND",
-                    "conditions": [
-                      {
-                        "field": "PROGRESS",
-                        "operator": "GREATER_THAN_OR_EQUAL",
-                        "value": "0.96"
-                      },
-                      {
-                        "field": "PROGRESS",
-                        "operator": "LESS_THAN",
-                        "value": "1"
-                      }
-                    ]
-                  }
-                ]
+                "field": "STATE",
+                "operator": "EQUAL",
+                "value": "stopped"
               }
             ]
           }
