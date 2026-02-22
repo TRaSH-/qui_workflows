@@ -1,0 +1,116 @@
+{
+  "name": "Tag: problem cross-seeds",
+  "trackerPattern": "*",
+  "trackerDomains": [
+    "*"
+  ],
+  "conditions": {
+    "schemaVersion": "1",
+    "tag": {
+      "enabled": true,
+      "tags": [
+        "~problem_cross-seeds"
+      ],
+      "mode": "full",
+      "condition": {
+        "operator": "AND",
+        "conditions": [
+          {
+            "field": "CATEGORY",
+            "operator": "EQUAL",
+            "value": "cross-seed"
+          },
+          {
+            "field": "STATE",
+            "operator": "NOT_EQUAL",
+            "value": "tracker_down"
+          },
+          {
+            "field": "ADDED_ON",
+            "operator": "GREATER_THAN_OR_EQUAL",
+            "value": "300"
+          },
+          {
+            "operator": "OR",
+            "conditions": [
+              {
+                "field": "STATE",
+                "operator": "EQUAL",
+                "value": "missingFiles"
+              },
+              {
+                "field": "STATE",
+                "operator": "EQUAL",
+                "value": "errored"
+              },
+              {
+                "field": "STATE",
+                "operator": "EQUAL",
+                "value": "stalled_downloading"
+              },
+              {
+                "field": "STATE",
+                "operator": "EQUAL",
+                "value": "stopped"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "tags": [
+      {
+        "enabled": true,
+        "tags": [
+          "~problem_cross-seeds"
+        ],
+        "mode": "full",
+        "condition": {
+          "operator": "AND",
+          "conditions": [
+            {
+              "field": "CATEGORY",
+              "operator": "EQUAL",
+              "value": "cross-seed"
+            },
+            {
+              "field": "STATE",
+              "operator": "NOT_EQUAL",
+              "value": "tracker_down"
+            },
+            {
+              "field": "ADDED_ON",
+              "operator": "GREATER_THAN_OR_EQUAL",
+              "value": "300"
+            },
+            {
+              "operator": "OR",
+              "conditions": [
+                {
+                  "field": "STATE",
+                  "operator": "EQUAL",
+                  "value": "missingFiles"
+                },
+                {
+                  "field": "STATE",
+                  "operator": "EQUAL",
+                  "value": "errored"
+                },
+                {
+                  "field": "STATE",
+                  "operator": "EQUAL",
+                  "value": "stalled_downloading"
+                },
+                {
+                  "field": "STATE",
+                  "operator": "EQUAL",
+                  "value": "stopped"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
