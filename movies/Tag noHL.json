@@ -21,7 +21,7 @@
             "value": "outside_qbittorrent"
           },
           {
-            "field": "COMPLETION_ON_AGE",
+            "field": "COMPLETION_ON",
             "operator": "GREATER_THAN_OR_EQUAL",
             "value": "43200"
           }

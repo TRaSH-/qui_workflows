@@ -28,7 +28,7 @@
             "value": "1814400"
           },
           {
-            "field": "LAST_ACTIVITY_AGE",
+            "field": "LAST_ACTIVITY",
             "operator": "GREATER_THAN_OR_EQUAL",
             "value": "21600"
           },
