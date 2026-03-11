@@ -23,8 +23,8 @@
             "value": "noHL"
           },
           {
-            "field": "SEEDING_TIME",
-            "operator": "GREATER_THAN_OR_EQUAL",
+            "field": "COMPLETION_ON",
+            "operator": "GREATER_THAN",
             "value": "1814400"
           },
           {
@@ -36,6 +36,22 @@
             "field": "NUM_COMPLETE",
             "operator": "GREATER_THAN_OR_EQUAL",
             "value": "3"
+          },
+          {
+            "operator": "AND",
+            "conditions": [
+              {
+                "field": "NAME",
+                "operator": "MATCHES",
+                "value": "(?i)(?:S\\d{1,3}|Season[\\s\\.]\\d{1,3})"
+              },
+              {
+                "field": "NAME",
+                "operator": "MATCHES",
+                "value": "(?i)S\\d{1,3}E\\d{1,3}",
+                "negate": true
+              }
+            ]
           }
         ]
       }

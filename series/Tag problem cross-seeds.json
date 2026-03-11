@@ -41,17 +41,7 @@
               {
                 "field": "STATE",
                 "operator": "EQUAL",
-                "value": "errored"
-              },
-              {
-                "field": "STATE",
-                "operator": "EQUAL",
                 "value": "stalled_downloading"
-              },
-              {
-                "field": "STATE",
-                "operator": "EQUAL",
-                "value": "stopped"
               }
             ]
           }
@@ -94,17 +84,7 @@
                 {
                   "field": "STATE",
                   "operator": "EQUAL",
-                  "value": "errored"
-                },
-                {
-                  "field": "STATE",
-                  "operator": "EQUAL",
                   "value": "stalled_downloading"
-                },
-                {
-                  "field": "STATE",
-                  "operator": "EQUAL",
-                  "value": "stopped"
                 }
               ]
             }

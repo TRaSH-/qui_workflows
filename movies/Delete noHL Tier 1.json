@@ -23,8 +23,8 @@
             "value": "noHL"
           },
           {
-            "field": "SEEDING_TIME",
-            "operator": "GREATER_THAN_OR_EQUAL",
+            "field": "COMPLETION_ON",
+            "operator": "GREATER_THAN",
             "value": "1814400"
           },
           {

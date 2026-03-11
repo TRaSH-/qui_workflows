@@ -26,9 +26,9 @@
             "value": "noHL"
           },
           {
-            "field": "SEEDING_TIME",
+            "field": "COMPLETION_ON",
             "operator": "GREATER_THAN_OR_EQUAL",
-            "value": "86400"
+            "value": "300"
           },
           {
             "field": "NUM_COMPLETE",
@@ -37,6 +37,40 @@
           }
         ]
       }
-    }
+    },
+    "tags": [
+      {
+        "enabled": true,
+        "tags": [
+          "~Tier1-noHL-21"
+        ],
+        "mode": "full",
+        "condition": {
+          "operator": "AND",
+          "conditions": [
+            {
+              "field": "TAGS",
+              "operator": "EQUAL",
+              "value": "Tier1"
+            },
+            {
+              "field": "TAGS",
+              "operator": "EQUAL",
+              "value": "noHL"
+            },
+            {
+              "field": "COMPLETION_ON",
+              "operator": "GREATER_THAN_OR_EQUAL",
+              "value": "300"
+            },
+            {
+              "field": "NUM_COMPLETE",
+              "operator": "GREATER_THAN_OR_EQUAL",
+              "value": "3"
+            }
+          ]
+        }
+      }
+    ]
   }
 }

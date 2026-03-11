@@ -23,9 +23,9 @@
             "value": "tracker_down"
           },
           {
-            "field": "ADDED_ON_AGE",
-            "operator": "GREATER_THAN",
-            "value": "3600"
+            "field": "ADDED_ON",
+            "operator": "GREATER_THAN_OR_EQUAL",
+            "value": "86400"
           },
           {
             "operator": "OR",
@@ -38,17 +38,7 @@
               {
                 "field": "STATE",
                 "operator": "EQUAL",
-                "value": "errored"
-              },
-              {
-                "field": "STATE",
-                "operator": "EQUAL",
                 "value": "stalled_downloading"
-              },
-              {
-                "field": "STATE",
-                "operator": "EQUAL",
-                "value": "stopped"
               }
             ]
           }
