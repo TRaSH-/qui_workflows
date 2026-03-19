@@ -1,0 +1,39 @@
+{
+  "name": "Force recheck: stopped cross-seeds (< 90%)",
+  "trackerPattern": "*",
+  "trackerDomains": [
+    "*"
+  ],
+  "conditions": {
+    "schemaVersion": "1",
+    "recheck": {
+      "enabled": true,
+      "condition": {
+        "operator": "AND",
+        "conditions": [
+          {
+            "field": "STATE",
+            "operator": "EQUAL",
+            "value": "stopped"
+          },
+          {
+            "field": "CATEGORY",
+            "operator": "EQUAL",
+            "value": "cross-seed"
+          },
+          {
+            "field": "ADDED_ON",
+            "operator": "LESS_THAN_OR_EQUAL",
+            "value": "3600"
+          },
+          {
+            "field": "PROGRESS",
+            "operator": "LESS_THAN_OR_EQUAL",
+            "value": "0.9"
+          }
+        ]
+      }
+    }
+  },
+  "intervalSeconds": 3600
+}
