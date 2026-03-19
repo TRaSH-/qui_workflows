@@ -25,7 +25,7 @@
           {
             "field": "ADDED_ON",
             "operator": "GREATER_THAN_OR_EQUAL",
-            "value": "86400"
+            "value": "3600"
           },
           {
             "operator": "OR",
@@ -39,6 +39,21 @@
                 "field": "STATE",
                 "operator": "EQUAL",
                 "value": "stalled_downloading"
+              },
+              {
+                "operator": "AND",
+                "conditions": [
+                  {
+                    "field": "STATE",
+                    "operator": "EQUAL",
+                    "value": "stopped"
+                  },
+                  {
+                    "field": "ADDED_ON",
+                    "operator": "GREATER_THAN",
+                    "value": "3600"
+                  }
+                ]
               }
             ]
           }
