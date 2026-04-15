@@ -28,7 +28,7 @@
           {
             "field": "ADDED_ON",
             "operator": "GREATER_THAN_OR_EQUAL",
-            "value": "300"
+            "value": "3600"
           },
           {
             "operator": "OR",
@@ -71,7 +71,7 @@
             {
               "field": "ADDED_ON",
               "operator": "GREATER_THAN_OR_EQUAL",
-              "value": "300"
+              "value": "3600"
             },
             {
               "operator": "OR",
@@ -92,5 +92,6 @@
         }
       }
     ]
-  }
+  },
+  "intervalSeconds": 3600
 }
