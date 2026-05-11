@@ -1,16 +1,12 @@
 #!/usr/bin/env python3
 """
-qBittorrent Auto-Tagger Script (Hotio compatible)
-Only tested on Hotio's qBit docker image
+qBittorrent Auto-Tagger Script (stdlib-only, Hotio compatible)
 
 Features:
 - Regex precompilation
+- Async batching
 - Tag de-duplication
-- Lightweight: fails fast and silently if Web UI is unavailable
-- Sends Accept-Encoding: gzip to avoid Qt 6.11.0 crash bug
-- Handles gzip-compressed responses
-- File logging with rotation
-- Optional Discord error notifications
+- Retry + timeout handling
 - No external dependencies
 
 Usage in qBittorrent:
@@ -20,34 +16,64 @@ Command:
 python3 /config/scripts/qbittorrent_auto_tagger.py "%N" "%I"
 """
 
-import re
 import os
+import re
 import sys
 import gzip
 import json
 import time
 import socket
+import asyncio
 import logging
 import urllib.request
 import urllib.parse
 import urllib.error
 import http.cookiejar
+from concurrent.futures import ThreadPoolExecutor
 
 # ============================================================================
 # CONFIGURATION
 # ============================================================================
 
-QBITTORRENT_HOST     = "http://localhost:8080"
+QBITTORRENT_HOST = "http://localhost:8080"
 QBITTORRENT_USERNAME = "admin"
-QBITTORRENT_PASSWORD = "adminadmin"
+QBITTORRENT_PASSWORD = "adminadmin"  # LocalHostAuth=false — localhost skips auth
 
-HTTP_TIMEOUT = 3    # seconds per request — keep short
-HTTP_RETRIES = 3    # total attempts before giving up
-RETRY_DELAY  = 2    # flat delay between retries (seconds)
-# Worst-case runtime: HTTP_RETRIES * (HTTP_TIMEOUT + RETRY_DELAY) = ~15s
+HTTP_TIMEOUT = 5        # seconds per request
+HTTP_RETRIES = 5        # total attempts
+RETRY_BACKOFF = 1.5     # exponential backoff base
+ASYNC_WORKERS = 4       # concurrent API workers
 
-# Optional: Discord webhook URL for error notifications (leave empty to disable)
-DISCORD_WEBHOOK_URL = ""
+# Optional: Discord webhook for error notifications (leave empty to disable)
+# DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/xxx_xxx-xxx"
+
+# ============================================================================
+# LOGGING
+# ============================================================================
+
+LOG_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "logs")
+LOG_FILE = os.path.join(LOG_DIR, "auto_tagger.log")
+LOG_MAX_BYTES = 2 * 1024 * 1024  # 2 MiB
+
+os.makedirs(LOG_DIR, exist_ok=True)
+
+# Simple rotation: if log exceeds max, rename to .old and start fresh
+if os.path.exists(LOG_FILE) and os.path.getsize(LOG_FILE) > LOG_MAX_BYTES:
+    old = LOG_FILE + ".old"
+    if os.path.exists(old):
+        os.remove(old)
+    os.rename(LOG_FILE, old)
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+    handlers=[
+        logging.FileHandler(LOG_FILE),
+        logging.StreamHandler(sys.stdout),
+    ],
+)
+log = logging.getLogger("auto_tagger")
 
 RULES = [
     {
@@ -85,34 +111,6 @@ RULES = [
 ]
 
 # ============================================================================
-# LOGGING
-# ============================================================================
-
-LOG_DIR      = os.path.join(os.path.dirname(os.path.abspath(__file__)), "logs")
-LOG_FILE     = os.path.join(LOG_DIR, "auto_tagger.log")
-LOG_MAX_BYTES = 2 * 1024 * 1024  # 2 MiB
-
-os.makedirs(LOG_DIR, exist_ok=True)
-
-# Simple rotation: if log exceeds max, rename to .old and start fresh
-if os.path.exists(LOG_FILE) and os.path.getsize(LOG_FILE) > LOG_MAX_BYTES:
-    old = LOG_FILE + ".old"
-    if os.path.exists(old):
-        os.remove(old)
-    os.rename(LOG_FILE, old)
-
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] %(message)s",
-    datefmt="%Y-%m-%d %H:%M:%S",
-    handlers=[
-        logging.FileHandler(LOG_FILE),
-        logging.StreamHandler(sys.stdout),
-    ],
-)
-log = logging.getLogger("auto_tagger")
-
-# ============================================================================
 # REGEX PRECOMPILATION
 # ============================================================================
 
@@ -121,7 +119,7 @@ def compile_rules(rules):
     for rule in rules:
         compiled.append({
             **rule,
-            "patterns":         [re.compile(p) for p in rule["patterns"]],
+            "patterns": [re.compile(p) for p in rule["patterns"]],
             "exclude_patterns": [re.compile(p) for p in rule["exclude_patterns"]],
         })
     return compiled
@@ -134,46 +132,26 @@ def matches_pattern(text, patterns):
     return any(p.search(text) for p in patterns)
 
 # ============================================================================
-# TAG DETERMINATION
+# DISCORD ERROR NOTIFICATION
 # ============================================================================
 
-def determine_tag(torrent_name):
-    for rule in COMPILED_RULES:
-        if not rule["enabled"]:
-            continue
-        if rule["exclude_patterns"] and matches_pattern(torrent_name, rule["exclude_patterns"]):
-            continue
-        if not rule["patterns"]:
-            return rule["tag"]
-        if matches_pattern(torrent_name, rule["patterns"]):
-            return rule["tag"]
-    return None
-
-# ============================================================================
-# DISCORD NOTIFICATION
-# ============================================================================
-
-def notify_discord(title, message, color, torrent_name="", info_hash=""):
-    """Send a Discord embed notification. No-op if webhook URL is not set."""
+def notify_error(message, torrent_name="", info_hash=""):
     if not DISCORD_WEBHOOK_URL:
         return
-
-    fields = []
-    if torrent_name:
-        fields.append({"name": "Torrent", "value": torrent_name, "inline": False})
-    if info_hash:
-        fields.append({"name": "Hash", "value": info_hash[:12], "inline": True})
-
-    payload = json.dumps({
-        "embeds": [{
-            "title": title,
-            "description": message,
-            "color": color,
-            "fields": fields,
-        }]
-    }).encode("utf-8")
-
     try:
+        payload = json.dumps({
+            "embeds": [{
+                "title": "Auto-Tagger Error",
+                "description": message,
+                "color": 15548997,
+                "fields": [
+                    f for f in [
+                        {"name": "Torrent", "value": torrent_name, "inline": False} if torrent_name else None,
+                        {"name": "Hash", "value": info_hash[:12], "inline": True} if info_hash else None,
+                    ] if f
+                ],
+            }]
+        }).encode("utf-8")
         req = urllib.request.Request(
             DISCORD_WEBHOOK_URL,
             data=payload,
@@ -184,47 +162,40 @@ def notify_discord(title, message, color, torrent_name="", info_hash=""):
     except Exception as e:
         log.warning("Discord notification failed: %s", e)
 
-
-def notify_error(message, torrent_name="", info_hash=""):
-    notify_discord("Auto-Tagger Error", message, color=15548997,
-                   torrent_name=torrent_name, info_hash=info_hash)
-
-
-def notify_success(message, torrent_name="", info_hash=""):
-    notify_discord("Auto-Tagger", message, color=3066993,
-                   torrent_name=torrent_name, info_hash=info_hash)
-
 # ============================================================================
-# QBITTORRENT API CLIENT (stdlib-only)
+# QBittorrent API CLIENT (stdlib-only)
 # ============================================================================
 
 class QBittorrentAPI:
     def __init__(self, host, username, password):
-        self.host     = host.rstrip('/')
+        self.host = host.rstrip('/')
         self.username = username
         self.password = password
 
         self.cookie_jar = http.cookiejar.CookieJar()
-        self.opener     = urllib.request.build_opener(
+        self.opener = urllib.request.build_opener(
             urllib.request.HTTPCookieProcessor(self.cookie_jar)
         )
+
+        self._login()
 
     def _request(self, method, path, data=None, params=None):
         last_error = None
 
-        for attempt in range(HTTP_RETRIES):
+        for attempt in range(1, HTTP_RETRIES + 1):
             try:
                 url = f"{self.host}{path}"
                 if params:
                     url += "?" + urllib.parse.urlencode(params)
 
-                encoded = urllib.parse.urlencode(data).encode("utf-8") if data else None
-                req     = urllib.request.Request(url, data=encoded, method=method)
+                encoded = None
+                if data:
+                    encoded = urllib.parse.urlencode(data).encode("utf-8")
 
-                # Referer required by some qBittorrent versions for CSRF protection
+                req = urllib.request.Request(url, data=encoded, method=method)
                 req.add_header("Referer", self.host)
-                # Explicitly set Accept-Encoding to avoid the Qt 6.11.0 crash
-                # bug triggered by Python urllib's default "identity" value.
+                # Avoid Qt 6.11.0 crash bug triggered by urllib's default
+                # Accept-Encoding: identity header.
                 # See: https://github.com/qbittorrent/qBittorrent/issues/24038
                 req.add_header("Accept-Encoding", "gzip")
 
@@ -236,32 +207,41 @@ class QBittorrentAPI:
 
             except (urllib.error.URLError, socket.timeout, OSError) as e:
                 last_error = e
-                if attempt < HTTP_RETRIES - 1:
-                    log.warning("Request failed (attempt %d/%d): %s — retrying in %ds",
-                                attempt + 1, HTTP_RETRIES, e, RETRY_DELAY)
-                    time.sleep(RETRY_DELAY)
+                if attempt < HTTP_RETRIES:
+                    time.sleep(RETRY_BACKOFF ** attempt)
+                else:
+                    break
 
-        raise ConnectionError(f"API unreachable after {HTTP_RETRIES} attempts: {last_error}")
+        log.error("API request failed after %d attempts: %s", HTTP_RETRIES, last_error)
+        raise Exception(f"API request failed after {HTTP_RETRIES} attempts: {last_error}")
 
-    def login(self):
+    def _login(self):
         response = self._request(
             "POST",
             "/api/v2/auth/login",
-            data={"username": self.username, "password": self.password}
+            data={
+                "username": self.username,
+                "password": self.password
+            }
         )
         if response.strip() != "Ok.":
-            raise PermissionError(f"Login rejected: {response.strip()}")
+            log.error("Login failed: %s", response)
+            raise Exception(f"Failed to login to qBittorrent: {response}")
 
-    def get_existing_tags(self, info_hash):
+    def get_torrent_info(self, info_hash):
         response = self._request(
             "GET",
             "/api/v2/torrents/info",
             params={"hashes": info_hash}
         )
         torrents = json.loads(response)
-        if not torrents:
+        return torrents[0] if torrents else None
+
+    def get_existing_tags(self, info_hash):
+        torrent = self.get_torrent_info(info_hash)
+        if not torrent:
             return set()
-        tags = torrents[0].get("tags", "")
+        tags = torrent.get("tags", "")
         return set(t.strip() for t in tags.split(",") if t.strip())
 
     def add_tag(self, info_hash, tag):
@@ -269,13 +249,61 @@ class QBittorrentAPI:
         if tag in existing:
             log.info("Tag '%s' already present, skipping", tag)
             return False
+
         self._request(
             "POST",
             "/api/v2/torrents/addTags",
             data={"hashes": info_hash, "tags": tag}
         )
-        log.info("Tag '%s' applied", tag)
         return True
+
+# ============================================================================
+# TAG DETERMINATION
+# ============================================================================
+
+def determine_tag(torrent_name):
+    for rule in COMPILED_RULES:
+        if not rule["enabled"]:
+            continue
+
+        if rule["exclude_patterns"] and matches_pattern(
+            torrent_name, rule["exclude_patterns"]
+        ):
+            continue
+
+        if not rule["patterns"]:
+            return rule["tag"]
+
+        if matches_pattern(torrent_name, rule["patterns"]):
+            return rule["tag"]
+
+    return None
+
+# ============================================================================
+# ASYNC BATCHING
+# ============================================================================
+
+EXECUTOR = ThreadPoolExecutor(max_workers=ASYNC_WORKERS)
+
+async def run_async(func, *args):
+    loop = asyncio.get_running_loop()
+    return await loop.run_in_executor(EXECUTOR, func, *args)
+
+
+async def process_torrent(torrent_name, info_hash, api):
+    tag = determine_tag(torrent_name)
+
+    if not tag:
+        log.info("No tag matched | %s", torrent_name)
+        return
+
+    log.info("Applying tag: %s | %s", tag, torrent_name)
+    try:
+        await run_async(api.add_tag, info_hash, tag)
+        log.info("Tagged OK: %s → %s", tag, info_hash[:12])
+    except Exception as e:
+        log.error("Tag failed: %s | %s | %s", tag, torrent_name, e)
+        notify_error(f"Tag failed: {e}", torrent_name, info_hash)
 
 # ============================================================================
 # ENTRYPOINT
@@ -287,36 +315,20 @@ def main():
         sys.exit(1)
 
     torrent_name = sys.argv[1]
-    info_hash    = sys.argv[2]
+    info_hash = sys.argv[2]
 
-    # Determine tag from name before touching the network
-    tag = determine_tag(torrent_name)
-    if not tag:
-        log.info("No matching rule, exiting | %s", torrent_name)
-        sys.exit(0)
-
-    log.info("Torrent: %s", torrent_name)
-    log.info("Tag:     %s", tag)
-
-    api = QBittorrentAPI(QBITTORRENT_HOST, QBITTORRENT_USERNAME, QBITTORRENT_PASSWORD)
+    log.info("Started: %s | %s", torrent_name, info_hash[:12])
 
     try:
-        api.login()
-    except ConnectionError as e:
-        # Web UI unavailable — exit cleanly so we don't linger or crash qBit
-        log.warning("Web UI unavailable, exiting cleanly: %s", e)
-        sys.exit(0)
-    except PermissionError as e:
-        log.error("Login failed: %s", e)
-        notify_error(f"Login failed: {e}", torrent_name, info_hash)
-        sys.exit(1)
-
-    try:
-        api.add_tag(info_hash, tag)
-    except ConnectionError as e:
-        log.error("Failed to apply tag: %s", e)
-        notify_error(f"Failed to apply tag '{tag}': {e}", torrent_name, info_hash)
-        sys.exit(0)
+        api = QBittorrentAPI(
+            QBITTORRENT_HOST,
+            QBITTORRENT_USERNAME,
+            QBITTORRENT_PASSWORD
+        )
+        asyncio.run(process_torrent(torrent_name, info_hash, api))
+    except Exception as e:
+        log.error("Fatal: %s | torrent=%s hash=%s", e, torrent_name, info_hash[:12] if info_hash else "?")
+        notify_error(f"Fatal: {e}", torrent_name, info_hash)
 
 
 if __name__ == "__main__":
