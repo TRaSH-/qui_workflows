@@ -5,7 +5,7 @@ Based on the [BZ workflow](https://github.com/BZ00001/qui_workflows): shortened 
 ## Series
 
 | Workflows                              | Description                                                                |
-|----------------------------------------|----------------------------------------------------------------------------|
+| -------------------------------------- | -------------------------------------------------------------------------- |
 | Delete noHL Tier 1.json                | Delete: noHL Tier 1 - after 21 days, If minimum seeders is 3, keep seeding |
 | Delete noHL Tier 2.json                | Delete: noHL Tier 2 - after 21 days                                        |
 | Delete noHL Tier 3.json                | Delete: noHL Tier 3 - after 21 days                                        |
@@ -13,10 +13,10 @@ Based on the [BZ workflow](https://github.com/BZ00001/qui_workflows): shortened 
 | Delete stalled downloads.json          | Delete: stalled downloads                                                  |
 | Delete unregistered torrents.json      | Delete: unregistered torrents                                              |
 | Force recheck stopped cross-seeds.json | Force recheck: stopped cross-seeds                                         |
+| Tag noHL.json                          | Tag: torrents that are not hardlinked with `noHL`                          |
 | Tag noHL Tier 1.json                   | Tag: noHL Tier 1 with `~Tier1-noHL-21`                                     |
 | Tag noHL Tier 2.json                   | Tag: noHL Tier 2 with `~Tier2-noHL-21`                                     |
 | Tag noHL Tier 3.json                   | Tag: noHL Tier 3 with `~Tier3-noHL-21`                                     |
-| Tag noHL.json                          | Tag: torrents that are not hardlinked with `noHL`                          |
 | Tag problem cross-seeds.json           | Tag: problem cross-seeds with `~problem_cross-seeds`                       |
 | Tag Season Pack.json                   | Tag: Season Packs with `Season Pack`                                       |
 | Tag Single Episodes.json               | Tag: Single Episodes with `Episodes`                                       |
@@ -32,7 +32,7 @@ Based on the [BZ workflow](https://github.com/BZ00001/qui_workflows): shortened 
 ## Movies
 
 | Workflows                              | Description                                                                |
-|----------------------------------------|----------------------------------------------------------------------------|
+| -------------------------------------- | -------------------------------------------------------------------------- |
 | Delete noHL Tier 1.json                | Delete: noHL Tier 1 - after 21 days, If minimum seeders is 3, keep seeding |
 | Delete noHL Tier 2.json                | Delete: noHL Tier 2 - after 21 days                                        |
 | Delete noHL Tier 3.json                | Delete: noHL Tier 3 - after 21 days                                        |
@@ -40,10 +40,10 @@ Based on the [BZ workflow](https://github.com/BZ00001/qui_workflows): shortened 
 | Delete stalled downloads.json          | Delete: stalled downloads                                                  |
 | Delete unregistered torrents.json      | Delete: unregistered torrents                                              |
 | Force recheck stopped cross-seeds.json | Force recheck: stopped cross-seeds                                         |
+| Tag noHL.json                          | Tag: torrents that are not hardlinked with `noHL`                          |
 | Tag noHL Tier 1.json                   | Tag: noHL Tier 1 with `~Tier1-noHL-21`                                     |
 | Tag noHL Tier 2.json                   | Tag: noHL Tier 2 with `~Tier2-noHL-21`                                     |
 | Tag noHL Tier 3.json                   | Tag: noHL Tier 3 with `~Tier3-noHL-21`                                     |
-| Tag noHL.json                          | Tag: torrents that are not hardlinked with `noHL`                          |
 | Tag problem cross-seeds.json           | Tag: problem cross-seeds with `~problem_cross-seeds`                       |
 | Tag Tier 1.json                        | Tag: Tier 1 with `Tier1`                                                   |
 | Tag Tier 2.json                        | Tag: Tier 2 with `Tier2`                                                   |
@@ -56,6 +56,6 @@ Based on the [BZ workflow](https://github.com/BZ00001/qui_workflows): shortened 
 
 ### Scripts
 
-| Scripts                    | Description                                                                                       |
-| -------------------------- | ------------------------------------------------------------------------------------------------- |
-| qbittorrent_auto_tagger.py | Tags episodes when added to qBittorrent with `Episodes` so you can exempt them from cross-seeding |
+| Scripts                    | Description                                                                                                                                 |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| qbittorrent_auto_tagger.py | Tags episodes when added to qBittorrent with `Episodes` so you can exempt them from cross-seeding, and also tags Season packs with `Season` |
