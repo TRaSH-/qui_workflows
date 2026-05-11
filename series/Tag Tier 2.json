@@ -1,0 +1,28 @@
+{
+  "_slug": "tag-tier2",
+  "name": "Tag: Tier 2",
+  "trackerPattern": "tracker_1",
+  "trackerDomains": [
+    "tracker.xyz"
+  ],
+  "conditions": {
+    "schemaVersion": "1",
+    "tag": {
+      "enabled": true,
+      "tags": [
+        "Tier2"
+      ],
+      "mode": "full"
+    },
+    "tags": [
+      {
+        "enabled": true,
+        "tags": [
+          "Tier2"
+        ],
+        "mode": "full"
+      }
+    ]
+  },
+  "sortOrder": 2
+}
