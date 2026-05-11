@@ -1,4 +1,5 @@
 {
+  "_slug": "delete-nohl-tier2",
   "name": "Delete: noHL Tier 2",
   "trackerPattern": "*",
   "trackerDomains": [
@@ -25,7 +26,7 @@
           {
             "field": "COMPLETION_ON",
             "operator": "GREATER_THAN",
-            "value": "1814400"
+            "value": "1836000"
           },
           {
             "field": "LAST_ACTIVITY",
@@ -36,5 +37,6 @@
       }
     }
   },
-  "intervalSeconds": 14400
+  "intervalSeconds": 21600,
+  "sortOrder": 20
 }

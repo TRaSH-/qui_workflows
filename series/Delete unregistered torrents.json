@@ -1,4 +1,5 @@
 {
+  "_slug": "delete-unregistered-torrents",
   "name": "Delete: unregistered torrents",
   "trackerPattern": "*",
   "trackerDomains": [
@@ -25,5 +26,6 @@
         ]
       }
     }
-  }
+  },
+  "sortOrder": 10
 }

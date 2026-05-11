@@ -1,0 +1,119 @@
+{
+  "_slug": "tag-min-seeds-not-met",
+  "name": "Tag: Min Seeds Not Met",
+  "trackerPattern": "*",
+  "trackerDomains": [
+    "*"
+  ],
+  "conditions": {
+    "schemaVersion": "1",
+    "tag": {
+      "enabled": true,
+      "tags": [
+        "~MinSeedsNotMet"
+      ],
+      "mode": "full",
+      "condition": {
+        "operator": "AND",
+        "conditions": [
+          {
+            "operator": "OR",
+            "conditions": [
+              {
+                "operator": "AND",
+                "conditions": [
+                  {
+                    "field": "NUM_COMPLETE",
+                    "operator": "LESS_THAN_OR_EQUAL",
+                    "value": "3"
+                  }
+                ]
+              },
+              {
+                "operator": "AND",
+                "conditions": [
+                  {
+                    "field": "NUM_INCOMPLETE",
+                    "operator": "LESS_THAN_OR_EQUAL",
+                    "value": "3"
+                  },
+                  {
+                    "field": "TRACKER",
+                    "operator": "EQUAL",
+                    "value": "HDB"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "field": "TAGS",
+            "operator": "EQUAL",
+            "value": "noHL"
+          },
+          {
+            "field": "TAGS",
+            "operator": "EQUAL",
+            "value": "Season"
+          }
+        ]
+      }
+    },
+    "tags": [
+      {
+        "enabled": true,
+        "tags": [
+          "~MinSeedsNotMet"
+        ],
+        "mode": "full",
+        "condition": {
+          "operator": "AND",
+          "conditions": [
+            {
+              "operator": "OR",
+              "conditions": [
+                {
+                  "operator": "AND",
+                  "conditions": [
+                    {
+                      "field": "NUM_COMPLETE",
+                      "operator": "LESS_THAN_OR_EQUAL",
+                      "value": "3"
+                    }
+                  ]
+                },
+                {
+                  "operator": "AND",
+                  "conditions": [
+                    {
+                      "field": "NUM_INCOMPLETE",
+                      "operator": "LESS_THAN_OR_EQUAL",
+                      "value": "3"
+                    },
+                    {
+                      "field": "TRACKER",
+                      "operator": "EQUAL",
+                      "value": "HDB"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "field": "TAGS",
+              "operator": "EQUAL",
+              "value": "noHL"
+            },
+            {
+              "field": "TAGS",
+              "operator": "EQUAL",
+              "value": "Season"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "intervalSeconds": 3600,
+  "sortOrder": 5
+}

@@ -1,0 +1,29 @@
+{
+  "name": "Delete: unregistered torrents",
+  "trackerPattern": "*",
+  "trackerDomains": [
+    "*"
+  ],
+  "conditions": {
+    "schemaVersion": "1",
+    "delete": {
+      "enabled": true,
+      "mode": "deleteWithFilesPreserveCrossSeeds",
+      "condition": {
+        "operator": "AND",
+        "conditions": [
+          {
+            "field": "IS_UNREGISTERED",
+            "operator": "EQUAL",
+            "value": "true"
+          },
+          {
+            "field": "STATE",
+            "operator": "NOT_EQUAL",
+            "value": "tracker_down"
+          }
+        ]
+      }
+    }
+  }
+}

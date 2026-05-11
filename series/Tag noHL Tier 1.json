@@ -1,4 +1,5 @@
 {
+  "_slug": "tag-nohl-tier1",
   "name": "Tag: noHL Tier 1",
   "trackerPattern": "*",
   "trackerDomains": [
@@ -28,7 +29,7 @@
           {
             "field": "COMPLETION_ON",
             "operator": "GREATER_THAN_OR_EQUAL",
-            "value": "300"
+            "value": "86400"
           },
           {
             "field": "NUM_COMPLETE",
@@ -61,7 +62,7 @@
             {
               "field": "COMPLETION_ON",
               "operator": "GREATER_THAN_OR_EQUAL",
-              "value": "300"
+              "value": "86400"
             },
             {
               "field": "NUM_COMPLETE",
@@ -72,5 +73,6 @@
         }
       }
     ]
-  }
+  },
+  "sortOrder": 17
 }

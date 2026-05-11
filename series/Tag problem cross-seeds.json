@@ -1,4 +1,5 @@
 {
+  "_slug": "tag-problem-cross-seeds",
   "name": "Tag: problem cross-seeds",
   "trackerPattern": "*",
   "trackerDomains": [
@@ -92,5 +93,6 @@
         }
       }
     ]
-  }
+  },
+  "sortOrder": 11
 }

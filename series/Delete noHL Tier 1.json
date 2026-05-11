@@ -1,4 +1,5 @@
 {
+  "_slug": "delete-nohl-tier1",
   "name": "Delete: noHL Tier 1",
   "trackerPattern": "*",
   "trackerDomains": [
@@ -13,29 +14,69 @@
         "operator": "AND",
         "conditions": [
           {
-            "field": "TAGS",
-            "operator": "EQUAL",
-            "value": "Tier1"
-          },
-          {
-            "field": "TAGS",
-            "operator": "EQUAL",
-            "value": "noHL"
-          },
-          {
-            "field": "COMPLETION_ON",
-            "operator": "GREATER_THAN",
-            "value": "1814400"
-          },
-          {
-            "field": "LAST_ACTIVITY",
-            "operator": "GREATER_THAN_OR_EQUAL",
-            "value": "21600"
-          },
-          {
-            "field": "NUM_COMPLETE",
-            "operator": "GREATER_THAN_OR_EQUAL",
-            "value": "3"
+            "operator": "OR",
+            "conditions": [
+              {
+                "operator": "AND",
+                "conditions": [
+                  {
+                    "field": "TAGS",
+                    "operator": "EQUAL",
+                    "value": "Tier1"
+                  },
+                  {
+                    "field": "TAGS",
+                    "operator": "EQUAL",
+                    "value": "noHL"
+                  },
+                  {
+                    "field": "COMPLETION_ON",
+                    "operator": "GREATER_THAN",
+                    "value": "1836000"
+                  },
+                  {
+                    "field": "LAST_ACTIVITY",
+                    "operator": "GREATER_THAN_OR_EQUAL",
+                    "value": "21600"
+                  },
+                  {
+                    "field": "NUM_COMPLETE",
+                    "operator": "GREATER_THAN_OR_EQUAL",
+                    "value": "3"
+                  }
+                ]
+              },
+              {
+                "operator": "AND",
+                "conditions": [
+                  {
+                    "field": "TAGS",
+                    "operator": "EQUAL",
+                    "value": "noHL"
+                  },
+                  {
+                    "field": "COMPLETION_ON",
+                    "operator": "GREATER_THAN",
+                    "value": "1836000"
+                  },
+                  {
+                    "field": "LAST_ACTIVITY",
+                    "operator": "GREATER_THAN_OR_EQUAL",
+                    "value": "21600"
+                  },
+                  {
+                    "field": "NUM_INCOMPLETE",
+                    "operator": "GREATER_THAN_OR_EQUAL",
+                    "value": "3"
+                  },
+                  {
+                    "field": "TRACKER",
+                    "operator": "EQUAL",
+                    "value": "HDB"
+                  }
+                ]
+              }
+            ]
           },
           {
             "operator": "AND",
@@ -57,5 +98,6 @@
       }
     }
   },
-  "intervalSeconds": 14400
+  "intervalSeconds": 21600,
+  "sortOrder": 18
 }

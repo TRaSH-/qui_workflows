@@ -1,6 +1,7 @@
 {
+  "_slug": "tag-tier3",
   "name": "Tag: Tier 3",
-  "trackerPattern": "tracker_3",
+  "trackerPattern": "tracker_1",
   "trackerDomains": [
     "tracker.xyz"
   ],
@@ -12,6 +13,16 @@
         "Tier3"
       ],
       "mode": "full"
-    }
-  }
+    },
+    "tags": [
+      {
+        "enabled": true,
+        "tags": [
+          "Tier3"
+        ],
+        "mode": "full"
+      }
+    ]
+  },
+  "sortOrder": 3
 }

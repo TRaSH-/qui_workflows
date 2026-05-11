@@ -1,0 +1,33 @@
+{
+  "name": "Tag: Single Episodes",
+  "trackerPattern": "*",
+  "trackerDomains": [
+    "*"
+  ],
+  "conditions": {
+    "schemaVersion": "1",
+    "tag": {
+      "enabled": true,
+      "tags": [
+        "Episode"
+      ],
+      "mode": "add",
+      "condition": {
+        "operator": "OR",
+        "conditions": [
+          {
+            "field": "NAME",
+            "operator": "MATCHES",
+            "value": "(?i)\\bS\\d{1,2}E\\d{1,2}\\b"
+          },
+          {
+            "field": "NAME",
+            "operator": "MATCHES",
+            "value": "\\b\\d{4}[-.\\/]\\d{2}[-.\\/]\\d{2}\\b"
+          }
+        ]
+      }
+    }
+  },
+  "intervalSeconds": 60
+}

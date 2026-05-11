@@ -1,4 +1,5 @@
 {
+  "_slug": "delete-problem-cross-seeds",
   "name": "Delete: problem cross-seeds",
   "trackerPattern": "*",
   "trackerDomains": [
@@ -46,5 +47,6 @@
       }
     }
   },
-  "intervalSeconds": 3600
+  "intervalSeconds": 3600,
+  "sortOrder": 12
 }

@@ -1,4 +1,5 @@
 {
+  "_slug": "tag-tier1",
   "name": "Tag: Tier 1",
   "trackerPattern": "tracker_1",
   "trackerDomains": [
@@ -12,6 +13,16 @@
         "Tier1"
       ],
       "mode": "full"
-    }
-  }
+    },
+    "tags": [
+      {
+        "enabled": true,
+        "tags": [
+          "Tier1"
+        ],
+        "mode": "full"
+      }
+    ]
+  },
+  "sortOrder": 1
 }

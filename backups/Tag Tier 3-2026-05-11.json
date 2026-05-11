@@ -1,0 +1,17 @@
+{
+  "name": "Tag: Tier 3",
+  "trackerPattern": "tracker_3",
+  "trackerDomains": [
+    "tracker.xyz"
+  ],
+  "conditions": {
+    "schemaVersion": "1",
+    "tag": {
+      "enabled": true,
+      "tags": [
+        "Tier3"
+      ],
+      "mode": "full"
+    }
+  }
+}

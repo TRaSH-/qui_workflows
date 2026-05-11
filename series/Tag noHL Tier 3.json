@@ -1,4 +1,5 @@
 {
+  "_slug": "tag-nohl-tier3",
   "name": "Tag: noHL Tier 3",
   "trackerPattern": "*",
   "trackerDomains": [
@@ -62,5 +63,6 @@
         }
       }
     ]
-  }
+  },
+  "sortOrder": 21
 }

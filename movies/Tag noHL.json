@@ -1,4 +1,5 @@
 {
+  "_slug": "tag-nohl",
   "name": "Tag: noHL",
   "trackerPattern": "*",
   "trackerDomains": [
@@ -27,6 +28,31 @@
           }
         ]
       }
-    }
-  }
+    },
+    "tags": [
+      {
+        "enabled": true,
+        "tags": [
+          "noHL"
+        ],
+        "mode": "full",
+        "condition": {
+          "operator": "AND",
+          "conditions": [
+            {
+              "field": "HARDLINK_SCOPE",
+              "operator": "NOT_EQUAL",
+              "value": "outside_qbittorrent"
+            },
+            {
+              "field": "COMPLETION_ON",
+              "operator": "GREATER_THAN_OR_EQUAL",
+              "value": "43200"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "sortOrder": 4
 }

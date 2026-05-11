@@ -1,0 +1,35 @@
+{
+  "name": "Delete: stalled downloads",
+  "trackerPattern": "*",
+  "trackerDomains": [
+    "*"
+  ],
+  "conditions": {
+    "schemaVersion": "1",
+    "delete": {
+      "enabled": true,
+      "mode": "deleteWithFilesIncludeCrossSeeds",
+      "condition": {
+        "operator": "AND",
+        "conditions": [
+          {
+            "field": "STATE",
+            "operator": "EQUAL",
+            "value": "stalled_downloading"
+          },
+          {
+            "field": "ADDED_ON",
+            "operator": "GREATER_THAN_OR_EQUAL",
+            "value": "14400"
+          },
+          {
+            "field": "PROGRESS",
+            "operator": "LESS_THAN",
+            "value": "0.095"
+          }
+        ]
+      }
+    }
+  },
+  "intervalSeconds": 3600
+}
