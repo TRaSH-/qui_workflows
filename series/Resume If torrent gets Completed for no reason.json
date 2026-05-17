@@ -28,11 +28,6 @@
             ]
           },
           {
-            "field": "TAGS",
-            "operator": "EQUAL",
-            "value": "Season"
-          },
-          {
             "field": "PROGRESS",
             "operator": "EQUAL",
             "value": "1"

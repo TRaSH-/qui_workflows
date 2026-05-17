@@ -7,6 +7,9 @@ All notable changes to this automations repository are documented here. This fil
 ### Added
 - `delete-problem-cross-seeds` (movies) — Delete: problem cross-seeds — *Added the missing workflow rule: Delete: problem cross-seeds for movies*
 
+### Updated
+- `resume-if-torrent-gets-completed-for-no-reason` (series) — Resume: If torrent gets Completed for no reason — *Removed the Season and noHL condition*
+
 ## 2026-05-11
 
 ### Added

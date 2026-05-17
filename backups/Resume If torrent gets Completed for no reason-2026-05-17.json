@@ -28,6 +28,11 @@
             ]
           },
           {
+            "field": "TAGS",
+            "operator": "NOT_EQUAL",
+            "value": "noHL"
+          },
+          {
             "field": "PROGRESS",
             "operator": "EQUAL",
             "value": "1"
