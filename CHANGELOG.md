@@ -4,11 +4,8 @@ All notable changes to this automations repository are documented here. This fil
 
 ## 2026-05-17
 
-Renamed "Tag + Upload Limit: Tier x" → "Tag + Upload Limit: Tier x (x MB/s)" to be consistent with the Series workflow rules
-
-### Renamed
-- `tag-plus-upload-limit-tier2` (movies) — "Tag + Upload Limit: Tier 2" → "Tag + Upload Limit: Tier 2 (2 MB/s)"
-- `tag-plus-upload-limit-tier3` (movies) — "Tag + Upload Limit: Tier 3" → "Tag + Upload Limit: Tier 1 (1 MB/s)"
+### Added
+- `delete-problem-cross-seeds` (movies) — Delete: problem cross-seeds — *Added the missing workflow rule: Delete: problem cross-seeds for movies*
 
 ## 2026-05-11
 
