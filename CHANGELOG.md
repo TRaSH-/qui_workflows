@@ -4,6 +4,9 @@ All notable changes to this automations repository are documented here. This fil
 
 ## 2026-05-23
 
+### Added
+- `delete-problem-cross-seeds` (series) — Delete: problem cross-seeds — *Added: Missing Series Delete: problem cross-seeds*
+
 ### Renamed
 - `tag-plus-upload-limit-tier3` (movies) — "Tag + Upload Limit: Tier 1 (1 MB/s)" → "Tag + Upload Limit: Tier 3 (1 MB/s)" — *Fixed typo in "Tag + Upload Limit: Tier 1 (1 MB/s)" → "Tag + Upload Limit: Tier 3 (1 MB/s)", thanks for reporting, HonkyKong22.*
 

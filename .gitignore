@@ -3,3 +3,5 @@ backups-full/
 state/
 # qui-sync: hide archived rules from GitHub
 archive/
+# qui-sync: hide per-rule export backups from GitHub
+backups/
