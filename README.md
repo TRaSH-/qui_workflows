@@ -5,3 +5,7 @@ Based on the [BZ workflow](https://github.com/BZ00001/qui_workflows), but shorte
 ## What is the purpose of each workflow automation rule?
 
 For detailed descriptions of each rule, please refer to the [TRaSH qui Workflows Wiki](https://github.com/TRaSH-/qui_workflows/wiki).
+
+## Changelog
+
+A record of all updates and changes is available [HERE](https://github.com/TRaSH-/qui_workflows/blob/main/CHANGELOG.md).
