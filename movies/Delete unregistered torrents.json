@@ -11,17 +11,42 @@
       "enabled": true,
       "mode": "deleteWithFilesPreserveCrossSeeds",
       "condition": {
-        "operator": "AND",
+        "operator": "OR",
         "conditions": [
           {
-            "field": "IS_UNREGISTERED",
-            "operator": "EQUAL",
-            "value": "true"
+            "operator": "AND",
+            "conditions": [
+              {
+                "field": "IS_UNREGISTERED",
+                "operator": "EQUAL",
+                "value": "true"
+              },
+              {
+                "field": "STATE",
+                "operator": "NOT_EQUAL",
+                "value": "tracker_down"
+              }
+            ]
           },
           {
-            "field": "STATE",
-            "operator": "NOT_EQUAL",
-            "value": "tracker_down"
+            "operator": "AND",
+            "conditions": [
+              {
+                "field": "STATE",
+                "operator": "EQUAL",
+                "value": "tracker_error"
+              },
+              {
+                "field": "TRACKER",
+                "operator": "EQUAL",
+                "value": "BHD"
+              },
+              {
+                "field": "STATE",
+                "operator": "NOT_EQUAL",
+                "value": "tracker_down"
+              }
+            ]
           }
         ]
       }
