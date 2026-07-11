@@ -47,6 +47,26 @@
                 "value": "tracker_down"
               }
             ]
+          },
+          {
+            "operator": "AND",
+            "conditions": [
+              {
+                "field": "STATE",
+                "operator": "EQUAL",
+                "value": "tracker_error"
+              },
+              {
+                "field": "TRACKER",
+                "operator": "EQUAL",
+                "value": "SP"
+              },
+              {
+                "field": "STATE",
+                "operator": "NOT_EQUAL",
+                "value": "tracker_down"
+              }
+            ]
           }
         ]
       }
