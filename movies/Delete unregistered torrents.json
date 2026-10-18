@@ -2,71 +2,24 @@
   "_slug": "delete-unregistered-torrents",
   "name": "Delete: unregistered torrents",
   "trackerPattern": "*",
-  "trackerDomains": [
-    "*"
-  ],
+  "trackerDomains": null,
   "conditions": {
     "schemaVersion": "1",
     "delete": {
       "enabled": true,
       "mode": "deleteWithFilesPreserveCrossSeeds",
       "condition": {
-        "operator": "OR",
+        "operator": "AND",
         "conditions": [
           {
-            "operator": "AND",
-            "conditions": [
-              {
-                "field": "IS_UNREGISTERED",
-                "operator": "EQUAL",
-                "value": "true"
-              },
-              {
-                "field": "STATE",
-                "operator": "NOT_EQUAL",
-                "value": "tracker_down"
-              }
-            ]
+            "field": "IS_UNREGISTERED",
+            "operator": "EQUAL",
+            "value": "true"
           },
           {
-            "operator": "AND",
-            "conditions": [
-              {
-                "field": "STATE",
-                "operator": "EQUAL",
-                "value": "tracker_error"
-              },
-              {
-                "field": "TRACKER",
-                "operator": "EQUAL",
-                "value": "BHD"
-              },
-              {
-                "field": "STATE",
-                "operator": "NOT_EQUAL",
-                "value": "tracker_down"
-              }
-            ]
-          },
-          {
-            "operator": "AND",
-            "conditions": [
-              {
-                "field": "STATE",
-                "operator": "EQUAL",
-                "value": "tracker_error"
-              },
-              {
-                "field": "TRACKER",
-                "operator": "EQUAL",
-                "value": "SP"
-              },
-              {
-                "field": "STATE",
-                "operator": "NOT_EQUAL",
-                "value": "tracker_down"
-              }
-            ]
+            "field": "STATE",
+            "operator": "NOT_EQUAL",
+            "value": "tracker_down"
           }
         ]
       }
