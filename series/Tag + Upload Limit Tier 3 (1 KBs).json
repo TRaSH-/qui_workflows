@@ -7,7 +7,7 @@
     "schemaVersion": "1",
     "speedLimits": {
       "enabled": true,
-      "uploadKiB": 1024,
+      "uploadKiB": 1,
       "condition": {
         "operator": "AND",
         "conditions": [

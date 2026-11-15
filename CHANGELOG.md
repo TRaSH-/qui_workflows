@@ -4,6 +4,8 @@ All notable changes to this automations repository are documented here. This fil
 
 ## 2026-11-15
 
+Corrected the upload limit from 1 MB/s to 1 kb/s.
+
 ### Added
 - `tag-plus-upload-limit-tier3-1-kb-s` (movies) — Tag + Upload Limit: Tier 3 (1 KB/s) — *This limit affects Tier 3 even more, depending on the number of seeders at any given time, with an interval. If the count drops below a certain number of seeders, it raises the upload speed to the specified maximum; once that period ends, it lowers it again. This is meant to give higher tiers more connections. At best, it reduces load, but mostly it solves the 20-upload limit. So if you have several Tier 3 torrents that are slowed down, and "Do not count slow torrents in these limits" is enabled, those torrents no longer count toward active connections. At reduced speed, they do not really affect resources.*
 - `tag-plus-upload-limit-tier3-1-kb-s` (series) — Tag + Upload Limit: Tier 3 (1 KB/s) — *This limit affects Tier 3 even more, depending on the number of seeders at any given time, with an interval. If the count drops below a certain number of seeders, it raises the upload speed to the specified maximum; once that period ends, it lowers it again. This is meant to give higher tiers more connections. At best, it reduces load, but mostly it solves the 20-upload limit. So if you have several Tier 3 torrents that are slowed down, and "Do not count slow torrents in these limits" is enabled, those torrents no longer count toward active connections. At reduced speed, they do not really affect resources.*
@@ -11,6 +13,7 @@ All notable changes to this automations repository are documented here. This fil
 - `delete-single-episodes-if-you-have-the-season-pack` (series) — Delete: Single Episodes if you have the Season Pack — *Delete: Single Episodes if you have the Season Pack*
 
 ### Updated
+- `tag-plus-upload-limit-tier3-1-kb-s` (series) — Tag + Upload Limit: Tier 3 (1 KB/s) — *Corrected the upload limit from 1 MB/s to 1 kb/s.*
 - `tag-tier1` (movies) — Tag: Tier 1
 - `tag-tier2` (movies) — Tag: Tier 2
 - `tag-tier3` (movies) — Tag: Tier 3
