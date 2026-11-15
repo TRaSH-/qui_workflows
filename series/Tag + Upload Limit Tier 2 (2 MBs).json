@@ -2,9 +2,7 @@
   "_slug": "tag-plus-upload-limit-tier2-2-mb-s",
   "name": "Tag + Upload Limit: Tier 2 (2 MB/s)",
   "trackerPattern": "*",
-  "trackerDomains": [
-    "*"
-  ],
+  "trackerDomains": null,
   "conditions": {
     "schemaVersion": "1",
     "speedLimits": {

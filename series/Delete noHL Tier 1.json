@@ -2,9 +2,7 @@
   "_slug": "delete-nohl-tier1",
   "name": "Delete: noHL Tier 1",
   "trackerPattern": "*",
-  "trackerDomains": [
-    "*"
-  ],
+  "trackerDomains": null,
   "conditions": {
     "schemaVersion": "1",
     "delete": {
@@ -32,7 +30,7 @@
                   {
                     "field": "COMPLETION_ON",
                     "operator": "GREATER_THAN",
-                    "value": "1836000"
+                    "value": "1857600"
                   },
                   {
                     "field": "LAST_ACTIVITY",
@@ -82,15 +80,14 @@
             "operator": "AND",
             "conditions": [
               {
-                "field": "NAME",
-                "operator": "MATCHES",
-                "value": "(?i)(?:S\\d{1,3}|Season[\\s\\.]\\d{1,3})"
+                "field": "SEASON_PACK_STATUS",
+                "operator": "EQUAL",
+                "value": "pack"
               },
               {
-                "field": "NAME",
-                "operator": "MATCHES",
-                "value": "(?i)S\\d{1,3}E\\d{1,3}",
-                "negate": true
+                "field": "SEASON_PACK_STATUS",
+                "operator": "NOT_EQUAL",
+                "value": "packed"
               }
             ]
           }

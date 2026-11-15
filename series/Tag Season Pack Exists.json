@@ -1,0 +1,46 @@
+{
+  "_slug": "tag-season-pack-exists",
+  "name": "Tag: Season Pack Exists",
+  "trackerPattern": "*",
+  "trackerDomains": null,
+  "conditions": {
+    "schemaVersion": "1",
+    "tag": {
+      "enabled": true,
+      "tags": [
+        "~SeasonPackExists"
+      ],
+      "mode": "full",
+      "condition": {
+        "operator": "AND",
+        "conditions": [
+          {
+            "field": "SEASON_PACK_STATUS",
+            "operator": "EQUAL",
+            "value": "packed"
+          }
+        ]
+      }
+    },
+    "tags": [
+      {
+        "enabled": true,
+        "tags": [
+          "~SeasonPackExists"
+        ],
+        "mode": "full",
+        "condition": {
+          "operator": "AND",
+          "conditions": [
+            {
+              "field": "SEASON_PACK_STATUS",
+              "operator": "EQUAL",
+              "value": "packed"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "sortOrder": 33
+}

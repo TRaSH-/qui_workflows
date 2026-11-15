@@ -2,9 +2,7 @@
   "_slug": "resume-stopped-cross-seeds-90pct",
   "name": "Resume: stopped cross-seeds (>90%)",
   "trackerPattern": "*",
-  "trackerDomains": [
-    "*"
-  ],
+  "trackerDomains": null,
   "conditions": {
     "schemaVersion": "1",
     "resume": {

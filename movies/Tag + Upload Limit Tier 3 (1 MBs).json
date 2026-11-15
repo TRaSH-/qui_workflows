@@ -2,9 +2,7 @@
   "_slug": "tag-plus-upload-limit-tier3",
   "name": "Tag + Upload Limit: Tier 3 (1 MB/s)",
   "trackerPattern": "*",
-  "trackerDomains": [
-    "*"
-  ],
+  "trackerDomains": null,
   "conditions": {
     "schemaVersion": "1",
     "speedLimits": {
@@ -22,6 +20,11 @@
             "field": "RATIO",
             "operator": "GREATER_THAN_OR_EQUAL",
             "value": "2"
+          },
+          {
+            "field": "NUM_COMPLETE",
+            "operator": "LESS_THAN_OR_EQUAL",
+            "value": "3"
           }
         ]
       }
@@ -44,6 +47,11 @@
             "field": "RATIO",
             "operator": "GREATER_THAN_OR_EQUAL",
             "value": "2"
+          },
+          {
+            "field": "NUM_COMPLETE",
+            "operator": "LESS_THAN_OR_EQUAL",
+            "value": "3"
           }
         ]
       }
@@ -67,12 +75,17 @@
               "field": "RATIO",
               "operator": "GREATER_THAN_OR_EQUAL",
               "value": "2"
+            },
+            {
+              "field": "NUM_COMPLETE",
+              "operator": "LESS_THAN_OR_EQUAL",
+              "value": "3"
             }
           ]
         }
       }
     ]
   },
-  "intervalSeconds": 1800,
+  "intervalSeconds": 300,
   "sortOrder": 24
 }

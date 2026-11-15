@@ -2,9 +2,7 @@
   "_slug": "tag-season-pack",
   "name": "Tag: Season Pack",
   "trackerPattern": "*",
-  "trackerDomains": [
-    "*"
-  ],
+  "trackerDomains": null,
   "conditions": {
     "schemaVersion": "1",
     "tag": {

@@ -2,9 +2,7 @@
   "_slug": "tag-nohl-tier1",
   "name": "Tag: noHL Tier 1",
   "trackerPattern": "*",
-  "trackerDomains": [
-    "*"
-  ],
+  "trackerDomains": null,
   "conditions": {
     "schemaVersion": "1",
     "tag": {

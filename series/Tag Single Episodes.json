@@ -2,9 +2,7 @@
   "_slug": "tag-single-episodes",
   "name": "Tag: Single Episodes",
   "trackerPattern": "*",
-  "trackerDomains": [
-    "*"
-  ],
+  "trackerDomains": null,
   "conditions": {
     "schemaVersion": "1",
     "tag": {

@@ -2,9 +2,7 @@
   "_slug": "resume-if-torrent-gets-completed-for-no-reason",
   "name": "Resume: If torrent gets Completed for no reason",
   "trackerPattern": "*",
-  "trackerDomains": [
-    "*"
-  ],
+  "trackerDomains": null,
   "conditions": {
     "schemaVersion": "1",
     "resume": {

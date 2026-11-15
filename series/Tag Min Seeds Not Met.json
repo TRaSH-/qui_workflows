@@ -2,9 +2,7 @@
   "_slug": "tag-min-seeds-not-met",
   "name": "Tag: Min Seeds Not Met",
   "trackerPattern": "*",
-  "trackerDomains": [
-    "*"
-  ],
+  "trackerDomains": null,
   "conditions": {
     "schemaVersion": "1",
     "tag": {

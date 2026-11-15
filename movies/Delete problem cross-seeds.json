@@ -2,9 +2,7 @@
   "_slug": "delete-problem-cross-seeds",
   "name": "Delete: problem cross-seeds",
   "trackerPattern": "*",
-  "trackerDomains": [
-    "*"
-  ],
+  "trackerDomains": null,
   "conditions": {
     "schemaVersion": "1",
     "delete": {

@@ -2,9 +2,7 @@
   "_slug": "delete-stalled-downloads",
   "name": "Delete: stalled downloads",
   "trackerPattern": "*",
-  "trackerDomains": [
-    "*"
-  ],
+  "trackerDomains": null,
   "conditions": {
     "schemaVersion": "1",
     "delete": {

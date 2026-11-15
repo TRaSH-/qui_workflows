@@ -2,9 +2,7 @@
   "_slug": "tag-tier2",
   "name": "Tag: Tier 2",
   "trackerPattern": "tracker_1",
-  "trackerDomains": [
-    "tracker.xyz"
-  ],
+  "trackerDomains": null,
   "conditions": {
     "schemaVersion": "1",
     "tag": {
@@ -21,6 +19,14 @@
           "Tier2"
         ],
         "mode": "full"
+      },
+      {
+        "enabled": true,
+        "tags": [
+          "Tier1",
+          "Tier3"
+        ],
+        "mode": "remove"
       }
     ]
   },

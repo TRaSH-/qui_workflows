@@ -2,9 +2,7 @@
   "_slug": "delete-nohl-tier2",
   "name": "Delete: noHL Tier 2",
   "trackerPattern": "*",
-  "trackerDomains": [
-    "*"
-  ],
+  "trackerDomains": null,
   "conditions": {
     "schemaVersion": "1",
     "delete": {
@@ -26,7 +24,7 @@
           {
             "field": "COMPLETION_ON",
             "operator": "GREATER_THAN",
-            "value": "1836000"
+            "value": "1857600"
           },
           {
             "field": "LAST_ACTIVITY",

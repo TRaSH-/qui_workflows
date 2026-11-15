@@ -2,9 +2,7 @@
   "_slug": "force-recheck-stopped-cross-seeds-90pct",
   "name": "Force recheck: stopped cross-seeds (< 90%)",
   "trackerPattern": "*",
-  "trackerDomains": [
-    "*"
-  ],
+  "trackerDomains": null,
   "conditions": {
     "schemaVersion": "1",
     "recheck": {

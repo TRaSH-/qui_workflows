@@ -1,0 +1,91 @@
+{
+  "_slug": "tag-plus-upload-limit-tier3-1-kb-s",
+  "name": "Tag + Upload Limit: Tier 3 (1 KB/s)",
+  "trackerPattern": "*",
+  "trackerDomains": null,
+  "conditions": {
+    "schemaVersion": "1",
+    "speedLimits": {
+      "enabled": true,
+      "uploadKiB": 1024,
+      "condition": {
+        "operator": "AND",
+        "conditions": [
+          {
+            "field": "TAGS",
+            "operator": "EQUAL",
+            "value": "Tier3"
+          },
+          {
+            "field": "RATIO",
+            "operator": "GREATER_THAN_OR_EQUAL",
+            "value": "2"
+          },
+          {
+            "field": "NUM_COMPLETE",
+            "operator": "GREATER_THAN_OR_EQUAL",
+            "value": "4"
+          }
+        ]
+      }
+    },
+    "tag": {
+      "enabled": true,
+      "tags": [
+        "~limited_tier3"
+      ],
+      "mode": "full",
+      "condition": {
+        "operator": "AND",
+        "conditions": [
+          {
+            "field": "TAGS",
+            "operator": "EQUAL",
+            "value": "Tier3"
+          },
+          {
+            "field": "RATIO",
+            "operator": "GREATER_THAN_OR_EQUAL",
+            "value": "2"
+          },
+          {
+            "field": "NUM_COMPLETE",
+            "operator": "GREATER_THAN_OR_EQUAL",
+            "value": "4"
+          }
+        ]
+      }
+    },
+    "tags": [
+      {
+        "enabled": true,
+        "tags": [
+          "~limited_tier3"
+        ],
+        "mode": "full",
+        "condition": {
+          "operator": "AND",
+          "conditions": [
+            {
+              "field": "TAGS",
+              "operator": "EQUAL",
+              "value": "Tier3"
+            },
+            {
+              "field": "RATIO",
+              "operator": "GREATER_THAN_OR_EQUAL",
+              "value": "2"
+            },
+            {
+              "field": "NUM_COMPLETE",
+              "operator": "GREATER_THAN_OR_EQUAL",
+              "value": "4"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "intervalSeconds": 1800,
+  "sortOrder": 25
+}

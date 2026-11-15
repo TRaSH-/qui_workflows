@@ -1,0 +1,35 @@
+{
+  "_slug": "delete-single-episodes-if-you-have-the-season-pack",
+  "name": "Delete: Single Episodes if you have the Season Pack",
+  "trackerPattern": "*",
+  "trackerDomains": null,
+  "conditions": {
+    "schemaVersion": "1",
+    "delete": {
+      "enabled": true,
+      "mode": "deleteWithFilesPreserveCrossSeeds",
+      "condition": {
+        "operator": "AND",
+        "conditions": [
+          {
+            "field": "SEASON_PACK_STATUS",
+            "operator": "EQUAL",
+            "value": "packed"
+          },
+          {
+            "field": "TAGS",
+            "operator": "EQUAL",
+            "value": "~SeasonPackExists"
+          },
+          {
+            "field": "COMPLETION_ON",
+            "operator": "GREATER_THAN_OR_EQUAL",
+            "value": "1814400"
+          }
+        ]
+      }
+    }
+  },
+  "intervalSeconds": 3600,
+  "sortOrder": 34
+}
