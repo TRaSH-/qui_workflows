@@ -4,7 +4,10 @@ All notable changes to this automations repository are documented here. This fil
 
 ## 2026-11-22
 
-Changed the condition from Completion Time to Seeding Time to prevent torrents from stopping before the preferred 21-day seeding period is reached.
+Added a workflow rule to tag unregistered torrents
+
+### Added
+- `tag-unregistered-torrents` (movies) — Tag: unregistered torrents — *Added a workflow rule to tag unregistered torrents*
 
 ### Updated
 - `delete-single-episodes-if-you-have-the-season-pack` (series) — Delete: Single Episodes if you have the Season Pack — *Changed the condition from Completion Time to Seeding Time to prevent torrents from stopping before the preferred 21-day seeding period is reached.*
