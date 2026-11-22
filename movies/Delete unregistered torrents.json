@@ -12,18 +12,48 @@
         "operator": "AND",
         "conditions": [
           {
-            "field": "IS_UNREGISTERED",
-            "operator": "EQUAL",
-            "value": "true"
+            "field": "STATE",
+            "operator": "NOT_EQUAL",
+            "value": "stalled_downloading"
           },
           {
             "field": "STATE",
             "operator": "NOT_EQUAL",
             "value": "tracker_down"
+          },
+          {
+            "field": "LAST_ACTIVITY",
+            "operator": "GREATER_THAN_OR_EQUAL",
+            "value": "259200"
+          },
+          {
+            "operator": "OR",
+            "conditions": [
+              {
+                "field": "IS_UNREGISTERED",
+                "operator": "EQUAL",
+                "value": "true"
+              },
+              {
+                "operator": "AND",
+                "conditions": [
+                  {
+                    "field": "TRACKER",
+                    "operator": "CONTAINS",
+                    "value": "tracker.beyond-hd"
+                  },
+                  {
+                    "field": "STATE",
+                    "operator": "EQUAL",
+                    "value": "tracker_error"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
     }
   },
-  "sortOrder": 10
+  "sortOrder": 12
 }
