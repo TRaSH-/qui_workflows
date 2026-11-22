@@ -7,6 +7,7 @@ All notable changes to this automations repository are documented here. This fil
 Changed the condition from Completion Time to Seeding Time to prevent torrents from stopping before the preferred 21-day seeding period is reached.
 
 ### Updated
+- `delete-single-episodes-if-you-have-the-season-pack` (series) — Delete: Single Episodes if you have the Season Pack — *Changed the condition from Completion Time to Seeding Time to prevent torrents from stopping before the preferred 21-day seeding period is reached.*
 - `delete-nohl-tier1` (movies) — Delete: noHL Tier 1 — *Changed the condition from Completion Time to Seeding Time to prevent torrents from stopping before the preferred 21-day seeding period is reached.*
 - `delete-nohl-tier2` (movies) — Delete: noHL Tier 2 — *Changed the condition from Completion Time to Seeding Time to prevent torrents from stopping before the preferred 21-day seeding period is reached.*
 - `delete-nohl-tier3` (movies) — Delete: noHL Tier 3 — *Changed the condition from Completion Time to Seeding Time to prevent torrents from stopping before the preferred 21-day seeding period is reached.*

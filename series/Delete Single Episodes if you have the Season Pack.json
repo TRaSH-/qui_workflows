@@ -22,7 +22,7 @@
             "value": "~SeasonPackExists"
           },
           {
-            "field": "COMPLETION_ON",
+            "field": "SEEDING_TIME",
             "operator": "GREATER_THAN_OR_EQUAL",
             "value": "1814400"
           }
@@ -31,5 +31,5 @@
     }
   },
   "intervalSeconds": 3600,
-  "sortOrder": 34
+  "sortOrder": 36
 }
