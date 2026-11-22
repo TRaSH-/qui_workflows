@@ -22,9 +22,9 @@
             "value": "noHL"
           },
           {
-            "field": "COMPLETION_ON",
+            "field": "SEEDING_TIME",
             "operator": "GREATER_THAN",
-            "value": "1857600"
+            "value": "1814400"
           },
           {
             "field": "LAST_ACTIVITY",
@@ -36,5 +36,5 @@
     }
   },
   "intervalSeconds": 21600,
-  "sortOrder": 22
+  "sortOrder": 24
 }

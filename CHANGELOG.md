@@ -4,9 +4,12 @@ All notable changes to this automations repository are documented here. This fil
 
 ## 2026-11-22
 
-Changed Sort Order
+Changed the condition from Completion Time to Seeding Time to prevent torrents from stopping before the preferred 21-day seeding period is reached.
 
 ### Updated
+- `delete-nohl-tier1` (movies) — Delete: noHL Tier 1 — *Changed the condition from Completion Time to Seeding Time to prevent torrents from stopping before the preferred 21-day seeding period is reached.*
+- `delete-nohl-tier2` (movies) — Delete: noHL Tier 2 — *Changed the condition from Completion Time to Seeding Time to prevent torrents from stopping before the preferred 21-day seeding period is reached.*
+- `delete-nohl-tier3` (movies) — Delete: noHL Tier 3 — *Changed the condition from Completion Time to Seeding Time to prevent torrents from stopping before the preferred 21-day seeding period is reached.*
 - `tag-problem-cross-seeds` (movies) — Tag: problem cross-seeds
 - `delete-problem-cross-seeds` (movies) — Delete: problem cross-seeds
 - `tag-nohl-tier1` (movies) — Tag: noHL Tier 1
